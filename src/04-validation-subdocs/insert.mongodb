@@ -1,0 +1,9 @@
+use("platzi_store")
+
+db.products.insertOne({
+	name: "Product A",
+	sizes: ["L", "M"],
+	category: {
+		name: "electronics"		
+	}
+})
