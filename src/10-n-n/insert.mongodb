@@ -1,0 +1,19 @@
+use("platzi_store")
+
+db.products.insertMany([
+	{
+		name: 'Product A',
+		size: ['L', 'M'],
+		price: 120,
+	},
+	{
+		name: 'Product B',
+		size: ['M'],
+		price: 20,
+	},
+	{
+		name: 'Product C',
+		size: ['L', 'M'],
+		price: 90,
+	}
+])
