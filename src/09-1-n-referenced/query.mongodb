@@ -1,0 +1,68 @@
+use("platzi_store")
+
+db.orders.find({ user_id: ObjectId('643800755fa1a15f0ba2305a') })
+db.users.findOne({ _id: ObjectId('643800755fa1a15f0ba2305a') })
+
+//Para obtener todas las orders
+db.orders.aggregate([ {
+		/**
+		* from: The target collection.
+		* localField: The local join field.
+		* foreignField: The target join field.
+		* as: The name for the results.
+		* pipeline: The pipeline to run on the joined collection.
+		* let: Optional variables to use in the pipeline field stages.
+		*/
+		$lookup: {
+		from: 'users',
+		localField: 'user_id',
+		foreignField: '_id',
+		as: 'user'
+		}
+	}
+])
+
+//Para obtener solo una
+db.orders.aggregate([ 
+	{
+		$match: {
+			_id: ObjectId('64383cdab9ad72e321a6e86a')
+		}
+	},
+	{
+		/**
+		* from: The target collection.
+		* localField: The local join field.
+		* foreignField: The target join field.
+		* as: The name for the results.
+		* pipeline: The pipeline to run on the joined collection.
+		* let: Optional variables to use in the pipeline field stages.
+		*/
+		$lookup: {
+		from: 'users',
+		localField: 'user_id',
+		foreignField: '_id',
+		as: 'user'
+		}
+	}
+])
+
+// desde Users obtener todas las Orders.
+db.users.aggregate([
+	{
+		/**
+		 * from: The target collection.
+		 * localField: The local join field.
+		 * foreignField: The target join field.
+		 * as: The name for the results.
+		 * pipeline: The pipeline to run on the joined collection.
+		 * let: Optional variables to use in the pipeline field stages.
+		 */
+		$lookup: {
+		  from: 'orders',
+		  localField: '_id',
+		  foreignField: 'user_id',
+		  as: 'orders'
+		}
+	}
+])
