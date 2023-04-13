@@ -1,0 +1,68 @@
+use("platzi_store")
+
+// este tipo de desnormalización nos permite mantener la info de una orden tal como fue creada en el momento
+// sin perder la posibilidad de mantener actualizados los productos de forma independiente; ya que se duplican los campos de name y price.
+db.orders.insertOne({
+	user_id: ObjectId('643800755fa1a15f0ba2305a'),
+	date: "2023/02/14",
+	items: [
+		{
+			name: 'Product 1',
+			price: 20,
+			qty: 15,
+			product_id: ObjectId('6436fa65d591695f7abc695a')
+		},		
+		{
+			name: 'Product 2',
+			price: 10,
+			qty: 30,
+			product_id: ObjectId('643850f9e089e2589e5e34a7')
+		},
+	]
+})
+
+db.orders.insertOne({
+	user_id: ObjectId('643800755fa1a15f0ba2305a'),
+	date: "2023/04/04",
+	items: [
+		{
+			name: 'Product A',
+			price: 120,
+			qty: 1
+		},		
+		{
+			name: 'Product B',
+			price: 50,
+			qty: 3
+		},		
+		{
+			name: 'Product C',
+			price: 20,
+			qty: 10
+		}
+	]
+})
+
+db.stores.insertOne({
+	storeId: 'STO02',
+	name: 'New Store',
+	address: "Road 15"
+})
+
+db.stores_details.insertOne({
+	storeId: 'STO01',
+	description: 'lorem impsu',
+	manager: {
+		email: 'test@email.com',
+		phone: '939838'
+	}
+})
+
+db.stores_details.insertOne({
+	storeId: 'STO02',
+	description: 'lorem impsu',
+	manager: {
+		email: 'manager@email.com',
+		phone: '4154545'
+	}
+})
