@@ -1,0 +1,25 @@
+use("platzi_store")
+
+db.stores.findOne({ storeId: 'STO01'})
+
+db.stores_details.findOne({ storeId: 'STO01'})
+
+
+db.stores.aggregate([
+	{
+		/**
+		 * from: The target collection.
+		 * localField: The local join field.
+		 * foreignField: The target join field.
+		 * as: The name for the results.
+		 * pipeline: The pipeline to run on the joined collection.
+		 * let: Optional variables to use in the pipeline field stages.
+		 */
+		$lookup: {
+		  from: 'stores_details',
+		  localField: 'storeId',
+		  foreignField: 'storeId',
+		  as: 'detail'
+		}
+	}
+])

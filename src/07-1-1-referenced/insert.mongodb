@@ -1,0 +1,31 @@
+use("platzi_store")
+
+db.stores.insertOne({
+	storeId: 'STO01',
+	name: 'Test Store',
+	address: "439 Road"
+})
+
+db.stores.insertOne({
+	storeId: 'STO02',
+	name: 'New Store',
+	address: "Road 15"
+})
+
+db.stores_details.insertOne({
+	storeId: 'STO01',
+	description: 'lorem impsu',
+	manager: {
+		email: 'test@email.com',
+		phone: '939838'
+	}
+})
+
+db.stores_details.insertOne({
+	storeId: 'STO02',
+	description: 'lorem impsu',
+	manager: {
+		email: 'manager@email.com',
+		phone: '4154545'
+	}
+})
