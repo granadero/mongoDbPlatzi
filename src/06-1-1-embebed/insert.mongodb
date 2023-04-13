@@ -1,0 +1,36 @@
+use("platzi_store")
+
+db.users.insertOne({
+	email: "test@mail.com",
+	password: "test123",
+	role: "admin",
+	social_accounts: ['twitter', 'facebook'],
+	address: {
+		street: 'rue 123',
+		city: 'Paris',
+		zip: '9999'
+	},
+	shipping_address: {
+		street: 'rue 93',
+		city: 'Paris',
+		zip: '9988'
+	}
+})
+
+
+db.users.insertOne({
+	email: "cust@mail.com",
+	password: "123456",
+	role: "customer",
+	social_accounts: ['facebook'],
+	address: {
+		street: 'fake street 123',
+		city: 'Springfield',
+		zip: '5555'
+	},
+	shipping_address: {
+		street: 'Fake street 123',
+		city: 'Springfield',
+		zip: '5555'
+	}
+})
